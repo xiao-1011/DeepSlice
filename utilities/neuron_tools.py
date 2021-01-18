@@ -35,9 +35,10 @@ def analyse_brain(plane_file, points_folder = 'points/', save_csv=False):
     cells = np.empty((0,3))
     for points in glob.glob(points_folder+'/*.csv'):
         cells = np.vstack((cells, analyse_slice(points, plane)))
-    cells = pd.DataFrame(cells, columns = ['X', 'Y', 'Z'])
-    cells.to_hdf(plane_file[:-4]+'Whole_Brain_Cell_Count.h5')
+    cells = pd.DataFrame(cells, columns = ['x', 'y', 'z'])
+    
+    cells.to_hdf(plane_file[:-4]+'_Whole_Brain_Cell_Count.h5', key = 'cells')
     if save_csv:
-        cells.to_csv(plane_file[:-4]+'Whole_Brain_Cell_Count.csv')
+        cells.to_csv(plane_file[:-4]+'_Whole_Brain_Cell_Count.csv')
 
 
